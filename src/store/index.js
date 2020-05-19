@@ -27,7 +27,7 @@ const myMutations = {
     state.user = user;
   },
   [types.GET_STUDENTS](state, students) {
-    state.students = students;
+    state.students = students.data;
   },
   [types.TEACHER](state, teahcer) {
     state.teacher.introduction = teahcer.introduction;
@@ -69,9 +69,10 @@ const myActions = {
     console.log(resp);
     commit(types.TEACHER, resp.data);
   },
-  async listStudents({ commit }, data) {
-    let resp = await axios.get("listStudent");
-    commit(types.GET_STUDENTS, resp.data.students);
+  async [types.GET_STUDENTS]({ commit }, data) {
+    let resp = await axios.get("teachers/students");
+    console.log(resp.data);
+    commit(types.GET_STUDENTS, resp.data);
   }
 };
 export default new Vuex.Store({

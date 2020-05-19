@@ -28,6 +28,14 @@ let adminRoutes = [
     // props: true,
     path: "/welcome",
     component: () => import("@/views/welcome.vue")
+  },
+  {
+    path: "/selfInfo",
+    component: () => import("@/components/info.vue")
+  },
+  {
+    path: "/teacher/students",
+    component: () => import("@/components/students.vue")
   }
 ];
 // 必须与后端提前约定。按角色，动态加载路由信息

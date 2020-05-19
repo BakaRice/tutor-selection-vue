@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header">
+    <div v-if="!isLogin" class="header">
       <div class="logo" :style="bgImg">
         <a><img src="@/assets/logo.png"/></a>
       </div>
@@ -38,6 +38,9 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+a {
+  text-decoration: none;
 }
 .header {
   position: relative;
