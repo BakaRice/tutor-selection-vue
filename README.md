@@ -27,7 +27,7 @@
 
 #### 导师个人信息修改界面
 
-![image-20200520230635190](E:\Learning-Vue\person-vue\md-assets\image-20200520230635190.png)
+![image-20200520230635190](./md-assets/image-20200520230635190.png)
 
 
 
