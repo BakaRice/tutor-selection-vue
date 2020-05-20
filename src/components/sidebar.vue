@@ -1,54 +1,33 @@
 <template>
-  <el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
-    @open="handleOpen"
-    @close="handleClose"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
-  >
-    <el-submenu index="1">
-      <template slot="title">
-        <i class="el-icon-location"></i>
-        <span>导航一</span>
-      </template>
-      <el-menu-item-group>
-        <template slot="title">分组一</template>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="分组2">
-        <el-menu-item index="1-3">选项3</el-menu-item>
-      </el-menu-item-group>
-      <el-submenu index="1-4">
-        <template slot="title">选项4</template>
-        <el-menu-item index="1-4-1">选项1</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <router-link to="/selfInfo">
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">个人信息</span>
-      </el-menu-item></router-link
-    >
-    <router-link to="/welcome">
-      <el-menu-item index="3">
-        <i class="el-icon-document"></i>
-        <span slot="title">welcome</span>
-      </el-menu-item>
-    </router-link>
-    <router-link to="/teacher/students">
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">学生信息</span>
-      </el-menu-item>
-    </router-link>
-  </el-menu>
+  <aside>
+    <div class="list-left">
+      <span class="yj-lm">导师互选系统</span>
+      <div class="sideMenu">
+        <h3 @click="index = 1" :class="{ on: index == 1 }">
+          <router-link id="cell" to="/selfInfo" title="个人信息">
+            个人信息
+          </router-link>
+        </h3>
+        <h3 @click="index = 2" :class="{ on: index == 2 }">
+          <router-link id="cell" to="/teacher/students" title="学生信息">
+            学生信息
+          </router-link>
+        </h3>
+        <h3 @click="index = 3" :class="{ on: index == 3 }">
+          <router-link id="cell" to="/welcome" title="登录欢迎">
+            登录欢迎
+          </router-link>
+        </h3>
+      </div>
+    </div>
+  </aside>
 </template>
 
 <script>
 export default {
+  data: () => ({
+    index: 0
+  }),
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -60,4 +39,69 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-left {
+  width: 240px;
+  padding-bottom: 40px;
+  background: #ebebeb;
+}
+.yj-lm {
+  display: block;
+  width: 240px;
+  height: 70px;
+  background: #00785a;
+  font-size: 26px;
+  color: #fff;
+  line-height: 70px;
+  text-align: center;
+  font-weight: bold;
+}
+.sideMenu {
+  margin-top: 5px !important;
+}
+.sideMenu h3 {
+  height: 57px;
+  line-height: 57px;
+  padding-left: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #b3b3b3;
+  background: url(../assets/list-nav-l.png) no-repeat 220px center;
+}
+.sideMenu h3.on {
+  background: #fff url(../assets/list-nav-l-h.png) no-repeat 217px center;
+  border: 0;
+  border-left: 3px solid #be9b60;
+  font-weight: bold;
+  box-sizing: border-box;
+  margin-top: -1px;
+}
+.sideMenu h3:hover {
+  transition: 0.2s;
+  color: #00785a;
+  background: #fff url(../assets/list-nav-l-h.png) no-repeat 217px center;
+  border: 0;
+  border-left: 3px solid #be9b60;
+  font-weight: bold;
+  box-sizing: border-box;
+  margin-top: -1px;
+}
+.sideMenu h3 > #cell {
+  font-size: 16px;
+  height: 57px;
+  display: block;
+  width: 84%;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: black;
+}
+.sideMenu h3 > #cell:hover {
+  transition: 0.2s;
+  color: #00785a;
+  font-weight: bold;
+}
+</style>

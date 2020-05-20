@@ -15,23 +15,35 @@
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "core-js": "^3.6.4",
+    "element-ui": "^2.13.2",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
   },
 ```
 
+1. 全部素材来自学校，版权为东北林业大学所有，仅供学习
+2. 使用`element-ui`,主题颜色为东北林业大学官方色 `#00785A`
+
+#### 导师个人信息修改界面
+
+![image-20200520230635190](E:\Learning-Vue\person-vue\md-assets\image-20200520230635190.png)
 
 
 
 
 
+### tips：
 
+1. input v-model 和计算属性的双向绑定 需要加set方法 
 
+   https://vuex.vuejs.org/zh/guide/forms.html
 
+2. 声明独立的component，alertdialog
 
+   
 
-
+   
 
 
 

@@ -8,11 +8,11 @@
         <img src="@/assets/logo-bg-img.jpg" />
       </div>
     </div>
+    <!-- <div v-if="isLogin" class="fixed-bg"></div> -->
     <div>
       <index v-if="isLogin" />
       <login v-else />
     </div>
-    <!-- <router-link to="/login">login</router-link> -->
   </div>
 </template>
 
@@ -67,6 +67,17 @@ a {
 }
 .header .logo-r img {
   height: 470px;
+}
+.fixed-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(//s2.hdslb.com/bfs/static/blive/blfe-dynamic-web/static/img/background.bc725153.png);
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
 #router {
   width: 80%;

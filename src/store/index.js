@@ -36,8 +36,22 @@ const myMutations = {
     state.user.name = teahcer.user.name;
     state.user.number = teahcer.user.number;
   },
-  number(state, number) {
-    state.user.number = number;
+  [types.UPDATE_TEACHER](state, teacher) {
+    state.teacher.introduction = teacher.introduction;
+    state.teacher.ranges = teacher.ranges;
+    state.user.name = teacher.user.name;
+  },
+  //同步修改 教师ranges
+  ranges(state, data) {
+    state.teacher.ranges = data;
+  },
+  //同步修改 教师introduction
+  introduction(state, data) {
+    state.teacher.introduction = data;
+  },
+  //同步修改 name
+  name(state, data) {
+    state.user.name = data;
   }
 };
 
@@ -65,9 +79,14 @@ const myActions = {
   },
   //list teahcer information by id
   async [types.TEACHER]({ commit }, data) {
-    let resp = await axios.get("teachers/");
+    let resp = await axios.get("teachers/teacher");
     console.log(resp);
     commit(types.TEACHER, resp.data);
+  },
+  async [types.UPDATE_TEACHER]({ commit }, data) {
+    let resp = await axios.post("teachers/teahcer", data);
+    console.log(resp);
+    commit(types.UPDATE_TEACHER, data);
   },
   async [types.GET_STUDENTS]({ commit }, data) {
     let resp = await axios.get("teachers/students");

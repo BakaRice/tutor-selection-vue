@@ -1,9 +1,18 @@
 <template>
   <div>
     <div>学生信息</div>
-    <ul>
+    <ul class="studentsInfo">
       <li v-for="(stu, index) in students" :key="index">
-        {{ index }},{{ stu.user.name }}
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>{{ stu.user.name }}</span>
+            <p style="float: right; padding: 3px 0">No.{{ stu.user.number }}</p>
+          </div>
+          <div>
+            <p>成绩:92.1</p>
+            <p>排名:3</p>
+          </div>
+        </el-card>
       </li>
     </ul>
   </div>
@@ -22,3 +31,32 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.text {
+  font-size: 14px;
+}
+ul {
+  list-style: none;
+}
+.item {
+  margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+
+.box-card {
+  width: 480px;
+}
+
+.studentsInfo li {
+  margin: 15px;
+}
+</style>

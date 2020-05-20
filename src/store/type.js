@@ -1,4 +1,5 @@
 export const UPDATE_USER = "updateUser";
+export const UPDATE_TEACHER = "updateTeacher";
 export const LIST_HOMEWORKS = "listHomeworks";
 export const GET_HOMEWORK = "getHomework";
 export const LOGIN = "login";

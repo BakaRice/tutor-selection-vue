@@ -6,17 +6,15 @@
         <p>基于sessionstorage中数据判断用户登陆状态，登录后加载此组件。</p>
       </el-header>
       <el-container>
-        <el-aside width="250px">
-          Aside
+        <el-aside width="280px">
           <sidebar />
         </el-aside>
         <el-main>
-          <h1>Main</h1>
-
-          <p>教师：需要显示教师个人信息、教师所指导学生</p>
-          <p>学生：需要显示学生个人信息、学生的导师</p>
-
-          <router-view />
+          <div class="index-body">
+            <!-- <p>教师：需要显示教师个人信息、教师所指导学生</p> -->
+            <!-- <p>学生：需要显示学生个人信息、学生的导师</p> -->
+            <router-view />
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -39,3 +37,5 @@ export default {
   }
 };
 </script>
+
+<style scoped></style>
