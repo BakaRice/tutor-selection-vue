@@ -4,18 +4,26 @@
       <span class="yj-lm">导师互选系统</span>
       <div class="sideMenu">
         <h3 @click="index = 1" :class="{ on: index == 1 }">
-          <router-link id="cell" to="/selfInfo" title="个人信息">
+          <router-link id="cell" to="/selfInfo" title="个人信息，可以进行修改">
             个人信息
           </router-link>
         </h3>
         <h3 @click="index = 2" :class="{ on: index == 2 }">
-          <router-link id="cell" to="/teacher/students" title="学生信息">
+          <router-link
+            id="cell"
+            to="/teacher/students"
+            title="选择您为导师的学生全部信息"
+          >
             学生信息
           </router-link>
         </h3>
         <h3 @click="index = 3" :class="{ on: index == 3 }">
-          <router-link id="cell" to="/welcome" title="登录欢迎">
-            登录欢迎
+          <router-link
+            id="cell"
+            to="/teacher/courses"
+            title="课程信息，导入所教课程的学生名单"
+          >
+            课程信息
           </router-link>
         </h3>
       </div>
@@ -44,6 +52,7 @@ export default {
   width: 240px;
   padding-bottom: 40px;
   background: #ebebeb;
+  position: fixed;
 }
 .yj-lm {
   display: block;

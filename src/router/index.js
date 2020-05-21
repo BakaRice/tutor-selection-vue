@@ -25,17 +25,16 @@ export default router;
 // 后期追加的路由配置
 let adminRoutes = [
   {
-    // props: true,
-    path: "/welcome",
-    component: () => import("@/views/welcome.vue")
-  },
-  {
     path: "/selfInfo",
     component: () => import("@/components/info.vue")
   },
   {
     path: "/teacher/students",
     component: () => import("@/components/students.vue")
+  },
+  {
+    path: "/teacher/courses",
+    component: () => import("@/components/course.vue")
   }
 ];
 // 必须与后端提前约定。按角色，动态加载路由信息

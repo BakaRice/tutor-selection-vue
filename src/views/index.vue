@@ -11,8 +11,6 @@
         </el-aside>
         <el-main>
           <div class="index-body">
-            <!-- <p>教师：需要显示教师个人信息、教师所指导学生</p> -->
-            <!-- <p>学生：需要显示学生个人信息、学生的导师</p> -->
             <router-view />
           </div>
         </el-main>

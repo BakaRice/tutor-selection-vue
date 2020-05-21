@@ -1,6 +1,8 @@
 export const UPDATE_USER = "updateUser";
 export const UPDATE_TEACHER = "updateTeacher";
-export const LIST_HOMEWORKS = "listHomeworks";
+export const LIST_COURSES = "listCourses";
+export const INSERT_COURSE = "insertCourse";
+export const UPDATE_COURSE = "updateCourse";
 export const GET_HOMEWORK = "getHomework";
 export const LOGIN = "login";
 export const GET_EXCEPTION = "getException";

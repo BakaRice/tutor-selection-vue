@@ -12,7 +12,9 @@ const myState = {
   isLogin: false,
   user: { name: "", number: 0 },
   teacher: { introduction: null, optional_num: 0, ranges: 0 },
-  courses: [{ id: null, name: null, lowset_socre: 0, credit: 0 }],
+  courses: [
+    { id: null, name: null, lowset_socre: null, credit: null, weight: null }
+  ],
   students: [{ id: null, name: null }]
 };
 
@@ -41,6 +43,12 @@ const myMutations = {
     state.teacher.ranges = teacher.ranges;
     state.user.name = teacher.user.name;
   },
+  [types.INSERT_COURSE](state, course) {
+    state.courses.push(course.data);
+  },
+  [types.LIST_COURSES](state, courses) {
+    state.courses = courses.data;
+  },
   //同步修改 教师ranges
   ranges(state, data) {
     state.teacher.ranges = data;
@@ -52,6 +60,18 @@ const myMutations = {
   //同步修改 name
   name(state, data) {
     state.user.name = data;
+  },
+  courseCredit(state, course) {
+    state.courses[course.index].credit = course.data;
+  },
+  courseName(state, course) {
+    state.courses[course.index].name = course.data;
+  },
+  courselowsetSorce(state, course) {
+    state.courses[course.index].lowsetSorce = course.data;
+  },
+  courseWeight(state, course) {
+    state.courses[course.index].weight = course.data;
   }
 };
 
@@ -92,6 +112,31 @@ const myActions = {
     let resp = await axios.get("teachers/students");
     console.log(resp.data);
     commit(types.GET_STUDENTS, resp.data);
+  },
+  async [types.LIST_COURSES]({ commit }, data) {
+    let resp = await axios.get("teachers/courses");
+    console.log(resp.data);
+    commit(types.LIST_COURSES, resp.data);
+  },
+  async [types.INSERT_COURSE]({ commit }, data) {
+    let resp = await axios.post("teachers/course", data);
+    console.log(resp.data);
+    commit(types.INSERT_COURSE, resp.data);
+  },
+  async [types.UPDATE_COURSE]({ commit }, data) {
+    console.log(this.state.courses[data]);
+    let resp1 = await axios.patch(
+      "teachers/courses/info",
+      this.state.courses[data]
+    );
+    let resp2 = await axios.patch(
+      "teachers/courses/setting",
+      this.state.courses[data]
+    );
+    console.log("resp1");
+    console.log(resp1);
+    console.log("resp2");
+    console.log(resp2);
   }
 };
 export default new Vuex.Store({

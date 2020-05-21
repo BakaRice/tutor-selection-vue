@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div>学生信息</div>
+    <span class="info-title">
+      <h2>学生信息</h2>
+    </span>
     <ul class="studentsInfo">
       <li v-for="(stu, index) in students" :key="index">
         <el-card class="box-card">
@@ -33,6 +35,18 @@ export default {
 </script>
 
 <style scoped>
+.info-title {
+  padding-left: 20px;
+  border-left: 6px solid #096c36;
+  display: block;
+  margin: 17px 0;
+  height: 22px;
+  line-height: 22px;
+}
+.info-title h2 {
+  font-size: 20px;
+  color: #096c36;
+}
 .text {
   font-size: 14px;
 }
