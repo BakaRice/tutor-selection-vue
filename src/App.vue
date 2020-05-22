@@ -1,5 +1,6 @@
 <template>
   <div>
+    <alertdialog />
     <div v-if="!isLogin" class="header">
       <div class="logo" :style="bgImg">
         <a><img src="@/assets/logo.png"/></a>
@@ -23,7 +24,8 @@ import { mapState } from "vuex";
 export default {
   components: {
     login: () => import("@/views/login.vue"),
-    index: () => import("@/views/index.vue")
+    index: () => import("@/views/index.vue"),
+    alertdialog: () => import("@/components/AlertDialog.vue")
   },
   computed: {
     ...mapState(["isLogin"])

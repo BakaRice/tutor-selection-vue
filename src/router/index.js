@@ -39,17 +39,17 @@ let adminRoutes = [
 ];
 // 必须与后端提前约定。按角色，动态加载路由信息
 // 使其他角色即使知道路由路径，也无法加载对应的组件
-const teacherRole = "fbf89a7c09ff46b4";
-const studentRole = "bb63e5f7e0f2ffae845c";
+export const TEACHER_ROLE = "fbf89a7c09ff46b4";
+export const STUDENT_ROLE = "14f6e82780a749d7";
 
 // 暴露该方法。登录后，有vuex调用，通知更新路由信息
 export function updateRoutes() {
   switch (sessionStorage.getItem("role")) {
-    case teacherRole:
+    case TEACHER_ROLE:
       console.log(adminRoutes);
       router.addRoutes(adminRoutes);
       break;
-    case studentRole:
+    case STUDENT_ROLE:
       // student的路由
       break;
   }

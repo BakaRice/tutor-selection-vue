@@ -21,17 +21,17 @@
 
 <script>
 import { mapState } from "vuex";
-import { TEACHER } from "@/store/type.js";
+// import { TEACHER } from "@/store/type.js";
 export default {
   created() {
-    this.$store.dispatch(TEACHER);
+    // this.$store.dispatch(TEACHER);
   },
   components: {
     sidebar: () => import("@/components/sidebar.vue")
   },
   computed: {
-    ...mapState(["user"]),
-    ...mapState(["teacher"])
+    ...mapState(["user"])
+    // ...mapState(["teacher"])
   }
 };
 </script>

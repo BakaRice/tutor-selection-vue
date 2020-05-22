@@ -49,6 +49,13 @@ const myMutations = {
   [types.LIST_COURSES](state, courses) {
     state.courses = courses.data;
   },
+  [types.REMOVE_COURSE](state, index) {
+    // state.courses = state.courses.filter(t => t.id != index);
+    // 这里的index是渲染列表的顺序序号
+    // splice被vue包裹 会自动重新渲染
+    // https://cn.vuejs.org/v2/guide/list.html
+    state.courses.splice(index, 1);
+  },
   //同步修改 教师ranges
   ranges(state, data) {
     state.teacher.ranges = data;
@@ -137,6 +144,14 @@ const myActions = {
     console.log(resp1);
     console.log("resp2");
     console.log(resp2);
+  },
+  async [types.REMOVE_COURSE]({ commit }, data) {
+    console.log(data);
+    let resp = await axios.delete(
+      `teachers/courses/${this.state.courses[data].id}`
+    );
+    console.log(resp);
+    commit(types.REMOVE_COURSE, data);
   }
 };
 export default new Vuex.Store({

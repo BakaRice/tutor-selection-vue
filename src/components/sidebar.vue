@@ -2,7 +2,7 @@
   <aside>
     <div class="list-left">
       <span class="yj-lm">导师互选系统</span>
-      <div class="sideMenu">
+      <div v-if="role == tea_role" class="sideMenu">
         <h3 @click="index = 1" :class="{ on: index == 1 }">
           <router-link id="cell" to="/selfInfo" title="个人信息，可以进行修改">
             个人信息
@@ -27,14 +27,27 @@
           </router-link>
         </h3>
       </div>
+      <div v-else-if="role == stu_role" class="sideMenu">
+        <h3 @click="index = 2" :class="{ on: index == 2 }">
+          <router-link id="cell" to="/teacher/students" title="进行导师选择">
+            导师选择
+          </router-link>
+        </h3>
+      </div>
     </div>
   </aside>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { TEACHER_ROLE } from "@/router/index.js";
+import { STUDENT_ROLE } from "@/router/index.js";
 export default {
   data: () => ({
-    index: 0
+    index: 0,
+    role: sessionStorage.getItem("role"),
+    stu_role: STUDENT_ROLE,
+    tea_role: TEACHER_ROLE
   }),
   methods: {
     handleOpen(key, keyPath) {
@@ -43,7 +56,8 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     }
-  }
+  },
+  computed: {}
 };
 </script>
 

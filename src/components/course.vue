@@ -92,7 +92,7 @@
       <el-button @click="addCourse">添加新课程</el-button>
       <div v-if="courses" class="courseList">
         <ul class="coursesInfo">
-          <li v-for="(cou, index) in courses" :key="index">
+          <li v-for="(cou, index) in courses" :key="cou.id">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <span>{{ cou.name }}</span>
@@ -102,6 +102,9 @@
                   type="text"
                 >
                   修改
+                </el-button>
+                <el-button type="danger" plain @click="removeCourse(index)">
+                  删除
                 </el-button>
               </div>
 
@@ -123,6 +126,7 @@
 import { LIST_COURSES } from "@/store/type.js";
 import { INSERT_COURSE } from "@/store/type.js";
 import { UPDATE_COURSE } from "@/store/type.js";
+import { REMOVE_COURSE } from "@/store/type.js";
 import { mapState } from "vuex";
 export default {
   data: () => ({
@@ -199,6 +203,32 @@ export default {
         this.isAdd = false;
       }
       this.editIndex = null;
+    },
+    removeCourse(value) {
+      console.log("removeCourse");
+
+      this.$confirm(
+        `此操作将永久删除${this.courses[value].name},课程学生信息将清空, 是否继续?`,
+        "提示",
+        {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }
+      )
+        .then(() => {
+          this.$store.dispatch(REMOVE_COURSE, value);
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     }
   }
 };
