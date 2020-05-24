@@ -69,6 +69,7 @@ a {
 }
 .header .logo-r img {
   height: 470px;
+  width: fit-content;
 }
 .fixed-bg {
   position: fixed;

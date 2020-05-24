@@ -37,6 +37,13 @@ let adminRoutes = [
     component: () => import("@/components/course.vue")
   }
 ];
+
+let studentsRoutes = [
+  {
+    path: "/students/teachers",
+    component: () => import("@/views/student/teachers.vue")
+  }
+];
 // 必须与后端提前约定。按角色，动态加载路由信息
 // 使其他角色即使知道路由路径，也无法加载对应的组件
 export const TEACHER_ROLE = "fbf89a7c09ff46b4";
@@ -50,6 +57,8 @@ export function updateRoutes() {
       router.addRoutes(adminRoutes);
       break;
     case STUDENT_ROLE:
+      console.log(studentsRoutes);
+      router.addRoutes(studentsRoutes);
       // student的路由
       break;
   }

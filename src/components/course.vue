@@ -39,7 +39,10 @@
         </div>
         <div style="margin: 20px 0;"></div>
       </form>
-
+      <el-button type="primary" plain>
+        <input type="file" @change="readFile" />
+        添加学生信息
+      </el-button>
       <el-button @click="exitEditCourse()">
         提交
       </el-button>
@@ -103,6 +106,7 @@
                 >
                   修改
                 </el-button>
+
                 <el-button type="danger" plain @click="removeCourse(index)">
                   删除
                 </el-button>
@@ -123,10 +127,12 @@
 </template>
 
 <script>
+import { readStudentFile } from "@/util/ExcelUtils.js";
 import { LIST_COURSES } from "@/store/type.js";
 import { INSERT_COURSE } from "@/store/type.js";
 import { UPDATE_COURSE } from "@/store/type.js";
 import { REMOVE_COURSE } from "@/store/type.js";
+import { ADD_STUDENTS } from "@/store/type.js";
 import { mapState } from "vuex";
 export default {
   data: () => ({
@@ -138,7 +144,8 @@ export default {
       lowsetSorce: null,
       name: null,
       weight: null
-    }
+    },
+    students: null
   }),
   created() {
     this.$store.dispatch(LIST_COURSES);
@@ -183,6 +190,13 @@ export default {
     }
   },
   methods: {
+    readFile(event) {
+      let file = event.target.files[0];
+      readStudentFile(file).then(data => {
+        this.students = data;
+        console.log(this.students);
+      });
+    },
     addCourse() {
       console.log("add");
       this.isAdd = true;
@@ -201,6 +215,13 @@ export default {
       if (this.isAdd) {
         this.$store.dispatch(INSERT_COURSE, this.newCourse);
         this.isAdd = false;
+      }
+      if (this.students) {
+        this.$store.dispatch(ADD_STUDENTS, {
+          index: this.editIndex,
+          students: this.students
+        });
+        this.isAdd = null;
       }
       this.editIndex = null;
     },

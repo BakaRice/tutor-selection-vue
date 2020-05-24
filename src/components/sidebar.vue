@@ -29,7 +29,7 @@
       </div>
       <div v-else-if="role == stu_role" class="sideMenu">
         <h3 @click="index = 2" :class="{ on: index == 2 }">
-          <router-link id="cell" to="/teacher/students" title="进行导师选择">
+          <router-link id="cell" to="/students/teachers" title="进行导师选择">
             导师选择
           </router-link>
         </h3>

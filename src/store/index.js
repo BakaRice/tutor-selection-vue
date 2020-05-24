@@ -11,11 +11,21 @@ const myState = {
   exception: { message: null },
   isLogin: false,
   user: { name: "", number: 0 },
-  teacher: { introduction: null, optional_num: 0, ranges: 0 },
+  teacher: {
+    introduction: null,
+    optional_num: 0,
+    ranges: 0
+  },
+  tutor: null,
   courses: [
-    { id: null, name: null, lowset_socre: null, credit: null, weight: null }
+    // { id: null, name: null, lowset_socre: null, credit: null, weight: null }
   ],
-  students: [{ id: null, name: null }]
+  students: [
+    // { id: null, name: null }
+  ],
+  teachers: [
+    // { introduction: null, optional_num: 0, ranges: 0 }
+  ]
 };
 
 const myMutations = {
@@ -55,6 +65,17 @@ const myMutations = {
     // splice被vue包裹 会自动重新渲染
     // https://cn.vuejs.org/v2/guide/list.html
     state.courses.splice(index, 1);
+  },
+  [types.LIST_TEACHERS](state, data) {
+    state.teachers = data;
+  },
+  [types.CHOSE](state, data) {
+    state.tutor = data;
+  },
+  [types.GET_TEACHER](state, data) {
+    state.tutor = data;
+    console.log("commit");
+    console.log(state.teahcer);
   },
   //同步修改 教师ranges
   ranges(state, data) {
@@ -119,6 +140,7 @@ const myActions = {
     let resp = await axios.get("teachers/students");
     console.log(resp.data);
     commit(types.GET_STUDENTS, resp.data);
+    console.log(this.state.students.length);
   },
   async [types.LIST_COURSES]({ commit }, data) {
     let resp = await axios.get("teachers/courses");
@@ -152,6 +174,31 @@ const myActions = {
     );
     console.log(resp);
     commit(types.REMOVE_COURSE, data);
+  },
+  async [types.ADD_STUDENTS]({ commit }, data) {
+    console.log("action add students ");
+    console.log(data);
+    let resp = await axios.post(
+      `teachers/courses/${this.state.courses[data.index].id}/students`,
+      data.students
+    );
+    console.log(resp);
+  },
+  async [types.LIST_TEACHERS]({ commit }, data) {
+    let resp = await axios.get("/students/teachers");
+    console.log(resp.data);
+    commit(types.LIST_TEACHERS, resp.data);
+  },
+  async [types.CHOSE]({ commit }, data) {
+    let resp = await axios.get(`/students/teahcers/${data}`);
+    commit(types.CHOSE, resp.data);
+    console.log(resp.data);
+  },
+  async [types.GET_TEACHER]({ commit }, data) {
+    let resp = await axios.get("students/teacher");
+    console.log("action");
+    console.log(resp);
+    commit(types.GET_TEACHER, resp.data);
   }
 };
 export default new Vuex.Store({
