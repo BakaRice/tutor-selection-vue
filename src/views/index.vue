@@ -1,9 +1,14 @@
 <template>
   <div>
     <el-container>
-      <el-header>
-        <h1>登录后系统首页 index</h1>
-        <p>基于sessionstorage中数据判断用户登陆状态，登录后加载此组件。</p>
+      <el-header class="afterheader">
+        <!-- <h1>登录后系统首页 index</h1>
+        <p>基于sessionstorage中数据判断用户登陆状态，登录后加载此组件。</p> -->
+        <div class="logo">
+          <a href="">
+            <img src="@/assets/logo.png" alt="" />
+          </a>
+        </div>
       </el-header>
       <el-container>
         <el-aside width="280px">
@@ -36,4 +41,15 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.afterheader {
+  height: 130px;
+  background: #00785a;
+}
+.logo {
+  line-height: 130px;
+}
+.logo img {
+  height: 130px;
+}
+</style>

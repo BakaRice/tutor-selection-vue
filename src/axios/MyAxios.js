@@ -29,6 +29,8 @@ axios.interceptors.response.use(
         case 401:
           // 可基于响应码，声明单独的处理
           break;
+        case 500:
+          break;
       }
       // 此时为同步事件，统一将任意异常信息，置于store
       store.commit(GET_EXCEPTION, { message: resp.data.message });

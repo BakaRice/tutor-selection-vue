@@ -206,21 +206,36 @@ export default {
       this.isEdit = true;
       this.editIndex = v;
     },
-    exitEditCourse() {
+    async exitEditCourse() {
       console.log("exitEdit");
       if (this.isEdit) {
         this.isEdit = false;
-        this.$store.dispatch(UPDATE_COURSE, this.editIndex);
+        await this.$store.dispatch(UPDATE_COURSE, this.editIndex);
+        this.$message({
+          type: "success",
+          message: "课程修改成功!"
+        });
       }
       if (this.isAdd) {
-        this.$store.dispatch(INSERT_COURSE, this.newCourse);
+        await this.$store.dispatch(INSERT_COURSE, this.newCourse);
+        this.$message({
+          type: "success",
+          message: "课程添加成功!"
+        });
+
         this.isAdd = false;
       }
       if (this.students) {
-        this.$store.dispatch(ADD_STUDENTS, {
+        await this.$store.dispatch(ADD_STUDENTS, {
           index: this.editIndex,
           students: this.students
         });
+
+        this.$message({
+          type: "success",
+          message: "学生添加成功!"
+        });
+
         this.isAdd = null;
       }
       this.editIndex = null;

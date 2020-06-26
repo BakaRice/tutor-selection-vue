@@ -67,6 +67,7 @@ export default {
   padding-bottom: 40px;
   background: #ebebeb;
   position: fixed;
+  margin: 10px 10px;
 }
 .yj-lm {
   display: block;

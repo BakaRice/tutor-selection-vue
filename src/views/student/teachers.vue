@@ -4,12 +4,20 @@
       <h2>教师信息</h2>
     </span>
     <div v-if="tutor">
-      <p>tutor:{{ tutor.user.name }}</p>
-
-      <p>introduction: {{ tutor.introduction }}</p>
+      <el-card>
+        <div style="padding: 14px;">
+          <h1>导师信息</h1>
+          <div class="bottom clearfix">
+            <p>姓名:{{ tutor.user.name }}</p>
+            <p>自我介绍: {{ tutor.introduction }}</p>
+          </div>
+        </div>
+      </el-card>
     </div>
     <ul v-else class="studentsInfo">
-      <div v-if="teachers.length == 0">暂时还没有可选的导师</div>
+      <div v-if="teachers.length == 0">
+        <el-alert title="暂时还没有可选的导师" type="warning"> </el-alert>
+      </div>
       <div v-if="teachers">
         <li v-for="(teahcer, index) in teachers" :key="index">
           <el-card class="box-card">
@@ -58,9 +66,13 @@ export default {
     // }
   },
   methods: {
-    choseTeacher(teacher_number) {
+    async choseTeacher(teacher_number) {
       console.log(teacher_number);
-      this.$store.dispatch(CHOSE, teacher_number);
+      await this.$store.dispatch(CHOSE, teacher_number);
+      this.$message({
+        type: "success",
+        message: "选取导师成功!"
+      });
     }
   }
 };

@@ -4,19 +4,24 @@
       <h2>学生信息</h2>
     </span>
     <ul class="studentsInfo">
-      <div v-if="students.length == 0">暂时还没有指导的学生</div>
+      <div v-if="students.length == 0">
+        <el-alert title="暂时还没有指导的学生" type="warning"> </el-alert>
+      </div>
       <div v-if="students">
         <li v-for="(stu, index) in students" :key="index">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span>{{ stu.user.name }}</span>
-              <p style="float: right; padding: 3px 0">
+              <p>index-{{ index }}</p>
+              <!-- <p style="float: right; padding: 3px 0">
                 No.{{ stu.user.number }}
-              </p>
+              </p> -->
             </div>
             <div>
-              <p>成绩:92.1</p>
-              <p>排名:3</p>
+              <p>学号{{ stu.user.number }}</p>
+              <p>姓名:{{ stu.user.name }}</p>
+
+              <!-- <p>成绩:92.1</p>
+              <p>排名:3</p> -->
             </div>
           </el-card>
         </li>

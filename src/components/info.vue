@@ -25,7 +25,10 @@
         <div class="infoFromCell">
           <div style="margin: 20px 0;"></div>
           <span>最大指导数</span>
-          <el-input v-model="ranges" placeholder="最大指导学生数量"></el-input>
+          <el-input
+            v-model.number="ranges"
+            placeholder="最大指导学生数量"
+          ></el-input>
         </div>
 
         <div class="infoFromCell">
@@ -33,7 +36,7 @@
           <span>当前指导数</span>
           <el-input
             disabled=""
-            v-model="teacher.optional_num"
+            v-model.number="teacher.optional_num"
             placeholder="当前指导学生数量"
           ></el-input>
         </div>
@@ -62,14 +65,18 @@ export default {
     this.$store.dispatch(TEACHER);
   },
   methods: {
-    updateInfo() {
+    async updateInfo() {
       console.log("updateInfo!");
-      this.$store.dispatch(UPDATE_TEACHER, {
+      await this.$store.dispatch(UPDATE_TEACHER, {
         introduction: this.$store.state.teacher.introduction,
         ranges: this.$store.state.teacher.ranges,
         user: {
           name: this.$store.state.user.name
         }
+      });
+      this.$message({
+        type: "success",
+        message: "修改成功!"
       });
     }
   },
