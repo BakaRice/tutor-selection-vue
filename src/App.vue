@@ -1,31 +1,7 @@
 <template>
   <div>
     <alertdialog />
-    <div v-if="!isLogin" class="header">
-      <div class="logo" :style="bgImg">
-        <a><img src="@/assets/logo.png"/></a>
-      </div>
-      <div class="logo-r">
-        <!-- <img src="@/assets/logo-bg-img.jpg" /> -->
-        <el-carousel
-          height="100%"
-          direction="vertical"
-          :autoplay="true"
-          :interval="5000"
-        >
-          <el-carousel-item
-            height="100%"
-            v-for="(item, index) in pic"
-            :key="index"
-          >
-            <h3 class="medium" :style="item">
-              {{ item }}
-            </h3>
-          </el-carousel-item>
-        </el-carousel>
-      </div>
-    </div>
-    <!-- <div v-if="isLogin" class="fixed-bg"></div> -->
+    <welcome v-if="!isLogin" />
     <div>
       <index v-if="isLogin" />
       <login v-else />
@@ -34,24 +10,12 @@
 </template>
 
 <script>
-import bg from "@/assets/logo-bg.png";
-import bg1 from "@/assets/login_container_bg_03b.jpg";
-import bg2 from "@/assets/login_container_bg_05b.jpg";
-import bg3 from "@/assets/login_container_bg_01b.jpg";
-// import { LOGIN } from "@/store/types.js";
 import { mapState } from "vuex";
 export default {
-  data: () => ({
-    bgImg: { backgroundImage: "url(" + bg + ") " },
-    pic: [
-      { backgroundImage: "url(" + bg1 + ") " },
-      { backgroundImage: "url(" + bg2 + ") " },
-      { backgroundImage: "url(" + bg3 + ") " }
-    ]
-  }),
   components: {
-    login: () => import("@/views/login.vue"),
+    login: () => import("@/components/login.vue"),
     index: () => import("@/views/index.vue"),
+    welcome: () => import("@/components/welcome.vue"),
     alertdialog: () => import("@/components/AlertDialog.vue")
   },
   computed: {

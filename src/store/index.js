@@ -199,6 +199,10 @@ const myActions = {
     console.log("action");
     console.log(resp);
     commit(types.GET_TEACHER, resp.data);
+  },
+  async [types.ADD_STUDENT]({ commit }, data) {
+    let resp = await axios.patch(`teachers/students`, data);
+    console.log(resp);
   }
 };
 export default new Vuex.Store({

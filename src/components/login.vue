@@ -67,7 +67,6 @@
 <script>
 import { LOGIN } from "@/store/type.js";
 export default {
-  components: {},
   data: () => ({
     loading: false,
     drawer: false,
@@ -102,9 +101,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  /* z-index: 3; */
-}
 .input {
   /* display: flex;
   justify-content: space-evenly; */

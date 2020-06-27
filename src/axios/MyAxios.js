@@ -24,16 +24,19 @@ axios.interceptors.response.use(
   error => {
     let resp = error.response;
     console.log(resp);
+    var resp_message = resp.data.message;
     if (resp) {
       switch (resp.status) {
         case 401:
           // 可基于响应码，声明单独的处理
           break;
         case 500:
+          resp_message = "网络或服务器异常";
           break;
       }
+
       // 此时为同步事件，统一将任意异常信息，置于store
-      store.commit(GET_EXCEPTION, { message: resp.data.message });
+      store.commit(GET_EXCEPTION, { message: resp_message });
     }
     // 可以阻止调用方法继续执行。但控制台有异常信息
     return Promise.reject();

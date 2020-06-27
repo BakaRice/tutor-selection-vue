@@ -4,7 +4,7 @@
       <h2>个人信息</h2>
     </span>
     <div style="display:flex">
-      <img src="../assets/img/info/bg-info.png" />
+      <img src="@/assets/img/info/bg-info.png" />
       <form class="infoForm" ref="form">
         <div class="infoFromCell">
           <span>姓名</span>

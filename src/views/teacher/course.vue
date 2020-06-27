@@ -46,6 +46,30 @@
       <el-button @click="exitEditCourse()">
         提交
       </el-button>
+      <!-- <el-button
+        @click="drawer = true"
+        type="primary"
+        style="margin-left: 16px;"
+      >
+        点我打开
+      </el-button> -->
+
+      <el-drawer title="我是标题" :visible.sync="drawer" :with-header="false">
+        <h1>学生成绩预览</h1>
+        <el-table :data="students" height="700px" stripe>
+          <el-table-column
+            property="number"
+            label="学号"
+            width="150"
+          ></el-table-column>
+          <el-table-column
+            property="name"
+            label="姓名"
+            width="100"
+          ></el-table-column>
+          <el-table-column property="grade" label="成绩"> </el-table-column>
+        </el-table>
+      </el-drawer>
     </div>
     <!-- add -->
     <div v-else-if="isAdd">
@@ -136,6 +160,7 @@ import { ADD_STUDENTS } from "@/store/type.js";
 import { mapState } from "vuex";
 export default {
   data: () => ({
+    drawer: false,
     isEdit: false,
     isAdd: false,
     editIndex: -1,
@@ -145,7 +170,7 @@ export default {
       name: null,
       weight: null
     },
-    students: null
+    students: []
   }),
   created() {
     this.$store.dispatch(LIST_COURSES);
@@ -195,6 +220,7 @@ export default {
       readStudentFile(file).then(data => {
         this.students = data;
         console.log(this.students);
+        this.$data.drawer = true;
       });
     },
     addCourse() {
@@ -253,10 +279,11 @@ export default {
         }
       )
         .then(() => {
-          this.$store.dispatch(REMOVE_COURSE, value);
-          this.$message({
-            type: "success",
-            message: "删除成功!"
+          this.$store.dispatch(REMOVE_COURSE, value).then(res => {
+            this.$message({
+              type: "success",
+              message: "删除成功!"
+            });
           });
         })
         .catch(() => {

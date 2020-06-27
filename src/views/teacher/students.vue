@@ -4,6 +4,11 @@
       <h2>学生信息</h2>
     </span>
     <ul class="studentsInfo">
+      <el-button> <a href="student">添加学生</a> </el-button>
+      <router-link :to="`/teacher/students/add`">
+        add
+      </router-link>
+      <route-view />
       <div v-if="students.length == 0">
         <el-alert title="暂时还没有指导的学生" type="warning"> </el-alert>
       </div>

@@ -11,6 +11,7 @@ export const ADV_LOGIN = "advlogin";
 export const GET_USER = "getUser";
 export const GET_STUDENTS = "getStudents";
 export const ADD_STUDENTS = "addStudents";
+export const ADD_STUDENT = "addStudent";
 export const TEACHER = "teacher";
 export const LIST_TEACHERS = "listTeachers";
 export const GET_TEACHER = "getTeacher";

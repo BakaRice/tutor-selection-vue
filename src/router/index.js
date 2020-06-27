@@ -4,10 +4,10 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/login",
-    component: () => import("@/views/login.vue")
-  },
+  // {
+  //   path: "/login",
+  //   component: () => import("@/components/login.vue")
+  // },
   {
     path: "/index",
     component: () => import("@/views/index.vue")
@@ -26,15 +26,19 @@ export default router;
 let adminRoutes = [
   {
     path: "/selfInfo",
-    component: () => import("@/components/info.vue")
+    component: () => import("@/views/teacher/info.vue")
   },
   {
     path: "/teacher/students",
-    component: () => import("@/components/students.vue")
+    component: () => import("@/views/teacher/students.vue")
+  },
+  {
+    path: "/teacher/students/add",
+    component: () => import("@/views/teacher/studentAdd.vue")
   },
   {
     path: "/teacher/courses",
-    component: () => import("@/components/course.vue")
+    component: () => import("@/views/teacher/course.vue")
   }
 ];
 
