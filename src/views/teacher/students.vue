@@ -4,9 +4,8 @@
       <h2>学生信息</h2>
     </span>
     <ul class="studentsInfo">
-      <el-button> <a href="student">添加学生</a> </el-button>
       <router-link :to="`/teacher/students/add`">
-        add
+        <el-button> 添加学生 </el-button>
       </router-link>
       <route-view />
       <div v-if="students.length == 0">
